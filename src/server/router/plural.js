@@ -72,6 +72,9 @@ module.exports = (db, name, opts) => {
     delete req.query._embed
     delete req.query._expand
 
+    // Add always Count header
+    res.setHeader('X-Total-Count', chain.size())
+    
     // Automatically delete query parameters that can't be found
     // in the database
     Object.keys(req.query).forEach(query => {
